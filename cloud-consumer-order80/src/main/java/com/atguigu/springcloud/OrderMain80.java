@@ -10,5 +10,6 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 public class OrderMain80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderMain80.class, args);
+        System.out.println("1111");
     }
 }
