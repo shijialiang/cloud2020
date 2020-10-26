@@ -38,10 +38,10 @@ public class PaymentController {
     }
 
     @GetMapping("/getPaymentById/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable Long id) {
+    public CommonResult getPaymentById(@PathVariable Long id) {
         Payment payment = paymentService.getPaymentById(id);
         if (payment != null) {
-            return new CommonResult(200, "查询成功,端口为：" + serverPort, payment.toString());
+            return new CommonResult(200, "查询成功,端口为：" + serverPort, payment);
         } else {
             return new CommonResult(500, "查询失败，未查到id为" + id + "的数据，端口为：" + serverPort, null);
         }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/payment")
@@ -37,10 +39,10 @@ public class PaymentController {
     }
 
     @GetMapping("/getPaymentById/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable Long id) {
+    public CommonResult getPaymentById(@PathVariable Long id) {
         Payment payment = paymentService.getPaymentById(id);
         if (payment != null) {
-            return new CommonResult(200, "查询成功,端口为：" + serverPort, payment.toString());
+            return new CommonResult(200, "查询成功,端口为：" + serverPort, payment);
         } else {
             return new CommonResult(500, "查询失败，未查到id为" + id + "的数据，端口为：" + serverPort, null);
         }
@@ -60,6 +62,17 @@ public class PaymentController {
     }
     @GetMapping("/getPaymentLB")
     public String getPaymentLB() {
+        return serverPort;
+    }
+
+
+    @GetMapping("/waitTime")
+    public String waitTime(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return serverPort;
     }
 }

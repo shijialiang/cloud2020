@@ -5,6 +5,7 @@ import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.OrderFeignService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
  * @create: 2020-10-22 18:00
  **/
 @RestController
+@RequestMapping("/consumer")
 public class OrderFeignController {
     @Resource
     private OrderFeignService orderFeignService;
@@ -23,5 +25,10 @@ public class OrderFeignController {
     @GetMapping("/getPaymentById/{id}")
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         return orderFeignService.getPaymentById(id);
+    }
+
+    @GetMapping("/waitTime")
+    public String waitTime(){
+        return orderFeignService.waitTime();
     }
 }

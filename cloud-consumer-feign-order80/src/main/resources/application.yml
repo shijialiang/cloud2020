@@ -6,3 +6,10 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
+ribbon:
+  ConnectTimeout: 50000
+  ReadTimeout: 50000
+logging:
+  level:
+    com.atguigu.springcloud.service: debug
+
